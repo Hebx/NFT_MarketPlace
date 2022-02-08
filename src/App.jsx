@@ -13,6 +13,7 @@ import NFTBalance from "components/NFTBalance";
 import { Menu, Layout } from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
+import SearchCollections from "components/SearchCollections";
 import "./style.css";
 import Text from "antd/lib/typography/Text";
 import NFTTokenIds from "components/NFTTokenIds";
@@ -52,7 +53,7 @@ const App = ({isServerInfo}) => {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
     useMoralis();
 
-    const [inputValue, setInputValue] = useState("0x1a92f7381b9f03921564a437210bb9396471050c")
+    const [inputValue, setInputValue] = useState("explore")
 
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
@@ -64,6 +65,7 @@ const App = ({isServerInfo}) => {
       <Router>
         <Header style={styles.header}>
           <Logo />
+          <SearchCollections setInputValue={setInputValue} />
           <Menu
             theme="light"
             mode="horizontal"
@@ -82,7 +84,7 @@ const App = ({isServerInfo}) => {
             <Menu.Item key="nft">
               <NavLink to="/nftBalance">🖼 Your Collection</NavLink>
             </Menu.Item>
-            <Menu.Item key="nftMarket">
+            <Menu.Item key="nftMarket" onClick={() => setInputValue("explore")}>
               <NavLink to="/nftMarket">📄 Explore</NavLink>
             </Menu.Item>
           </Menu>
@@ -98,13 +100,13 @@ const App = ({isServerInfo}) => {
               <NFTBalance />
             </Route>
             <Route path="/nftMarket">
-              <NFTTokenIds inputValue={inputValue} />
+              <NFTTokenIds inputValue={inputValue} setInputValue={setInputValue} />
             </Route>
             <Route path="/transactions">
               <NFTBalance />
             </Route>
           </Switch>
-          <Redirect to="/nftBalance" />
+          <Redirect to="/nftMarket" />
         </div>
       </Router>
       <Footer style={{ textAlign: "center" }}>

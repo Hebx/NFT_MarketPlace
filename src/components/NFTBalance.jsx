@@ -29,6 +29,8 @@ function NFTBalance() {
   const [amountToSend, setAmount] = useState(null);
   const [nftToSend, setNftToSend] = useState(null);
   const [isPending, setIsPending] = useState(false);
+  const [nftToSell, setNftToSell] = useState();
+
 
   async function transfer(nft, amount, receiver) {
     const options = {
@@ -54,8 +56,8 @@ function NFTBalance() {
       });
   }
 
-  const handleTransferClick = (nft) => {
-    setNftToSend(nft);
+  const handleSellClick = (nft) => {
+    setNftToSell(nft);
     setVisibility(true);
   };
 
@@ -80,7 +82,7 @@ function NFTBalance() {
                   />
                 </Tooltip>,
                 <Tooltip title="List on MarketPlace">
-                  <ShoppingCartOutlined onClick={() => alert("ADD MARKETPLACE")} />
+                  <ShoppingCartOutlined onClick={() => handleSellClick(nft)} />
                 </Tooltip>,
               ]}
               style={{ width: 240, border: "2px solid #e7eaf3" }}
@@ -100,18 +102,20 @@ function NFTBalance() {
           ))}
       </div>
       <Modal
-        title={`Transfer ${nftToSend?.name || "NFT"}`}
+        title={`Sell ${nftToSell?.name || "NFT"}`}
         visible={visible}
         onCancel={() => setVisibility(false)}
-        onOk={() => transfer(nftToSend, amountToSend, receiverToSend)}
-        confirmLoading={isPending}
-        okText="Send"
+        onOk={() => alert("Sold this NFT")}
+        okText="Sell"
       >
-        <AddressInput autoFocus placeholder="Receiver" onChange={setReceiver} />
-        {nftToSend && nftToSend.contract_type === "erc1155" && (
-          <Input placeholder="amount to send" onChange={(e) => handleChange(e)} />
-        )}
-      </Modal>
+        <img src={nftToSell?.image}
+            style={{
+              width: "250px",
+              margin: "auto",
+              borderRadius: "10px",
+              marginBottom: "15px"
+            }} />
+       </Modal>
     </>
   );
 }
