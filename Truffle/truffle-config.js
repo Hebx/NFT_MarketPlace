@@ -1,3 +1,7 @@
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const mnemonic = fs.readFileSync(".secret").toString().trim();
+const fs = require('fs');
+
 module.exports = {
   // Uncommenting the defaults below
   // provides for an easier quick-start with Ganache.
@@ -13,6 +17,14 @@ module.exports = {
       network_id: 1337,
     },
   },
+  matic: {
+    provider: () => new HDWalletProvider(mnemonic, `https://rpc-mumbai.maticvigil.com`),
+    network_id: 80001,
+    confirmations: 2,
+    timeoutBlocks: 200,
+    skipDryRun: true
+  },
+};
   //
   // Truffle DB is currently disabled by default; to enable it, change enabled:
   // false to enabled: true. The default storage location can also be
@@ -34,4 +46,4 @@ module.exports = {
   //     },
   //   },
   // },
-};
+

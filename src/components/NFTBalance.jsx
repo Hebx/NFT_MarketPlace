@@ -29,7 +29,7 @@ function NFTBalance() {
   const [nftToSell, setNftToSell] = useState();
   const [price, setPrice] = useState();
   const contractProcessor = useWeb3ExecuteFunction();
-  const contractAbiJson = JSON.parse(contractABI);
+  const contractABIJson = JSON.parse(contractABI);
   const listItemFunction = "createMarketItem";
 
 
@@ -38,20 +38,20 @@ function NFTBalance() {
     const ops = {
       contractAddress: marketAddress,
       functionName : listItemFunction,
-      abi: contractAbiJson,
+      abi: contractABIJson,
       params: {
         nftContract: nft.token_address,
         tokenId: nft.token_id,
         price: String(p)
       }
-    }
+    };
     await contractProcessor.fetch({
-      params:ops,
+      params: ops,
       onSuccess: () => {
         alert("item Bought")
       },
       onError: (error) => {
-        alert(error)
+        alert(error);
       }
     })
   }

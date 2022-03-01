@@ -20,7 +20,7 @@ contract MarketPlace is ReentrancyGuard {
 			uint itemId;
 			address nftContract;
 			uint256 tokenId;
-			address payable seller;
+			address payable seller; 
 			address payable owner;
 			uint256 price;
 			bool sold;

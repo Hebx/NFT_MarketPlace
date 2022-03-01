@@ -66,6 +66,12 @@ export const networkCollections = {
 		  name: "Pixel Show",
 		  addrs: "0xCA34404dD8Bd6537BE76F3A51B379F8949bD7973",
 		},
+		{
+			image:
+			  "https://ph-files.imgix.net/44e890ab-8017-447f-9815-bf78727b2ad9.png?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=635&h=380&fit=max&bg=0fff&dpr=2",
+			name: "Polywars Ship",
+			addrs: "0x102d7d235795744d44f862cc8d92dCCC8F46112e",
+		  },
 	  ],
   };
 

@@ -17,6 +17,7 @@ import SearchCollections from "components/SearchCollections";
 import "./style.css";
 import Text from "antd/lib/typography/Text";
 import NFTTokenIds from "components/NFTTokenIds";
+import Transactions from "components/Transactions";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -103,7 +104,7 @@ const App = ({isServerInfo}) => {
               <NFTTokenIds inputValue={inputValue} setInputValue={setInputValue} />
             </Route>
             <Route path="/transactions">
-              <NFTBalance />
+              <Transactions />
             </Route>
           </Switch>
           <Redirect to="/nftMarket" />

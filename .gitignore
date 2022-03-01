@@ -34,3 +34,4 @@ typechain
 /Truffle/build
 /Truffle/data
 .abi
+/Truffle/.secret
